@@ -121,23 +121,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // ===== TOMBOL START GAME =====
-    const startGameBtn = document.getElementById('start-game');
-    if (startGameBtn) {
-        startGameBtn.addEventListener('click', function() {
-            // Efek klik tombol
-            this.classList.add('clicked');
-            
-            // Tampilkan pesan game dimulai
-            alert('Game dimulai! Selamat bermain!');
-            
-            // Hapus kelas setelah animasi selesai
-            setTimeout(() => {
-                this.classList.remove('clicked');
-            }, 300);
-        });
-    }
-    
     // ===== ANIMASI SCROLL =====
     // Animasi elemen saat di-scroll
     const animateOnScroll = function() {

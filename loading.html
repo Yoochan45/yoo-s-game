@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading - Yoo's Game</title>
+    <!-- Link ke file CSS -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="loading.css">
+    <!-- Link ke Font Awesome untuk ikon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- Link ke Google Fonts untuk font game -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="loading-container">
+        <div class="loading-card">
+            <h1 class="loading-title">Loading Game...</h1>
+            
+            <!-- Loading bar -->
+            <div class="loading-bar-container">
+                <div class="loading-bar"></div>
+            </div>
+            
+            <!-- Loading percentage -->
+            <div class="loading-percentage">0%</div>
+            
+            <!-- Loading tips -->
+            <div class="loading-tip">
+                <i class="fas fa-lightbulb"></i>
+                <p id="tip-text">Tip: Gunakan item spesial untuk mengalahkan boss!</p>
+            </div>
+            
+            <!-- Continue button (hidden initially) -->
+            <button id="continue-btn" class="game-btn pulse-effect" style="display: none;">
+                Mulai Game <i class="fas fa-arrow-right"></i>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Array tips yang akan ditampilkan selama loading
+        const tips = [
+            "Gunakan item spesial untuk mengalahkan boss!",
+            "Jangan lupa untuk meng-upgrade senjata Anda secara berkala.",
+            "Kumpulkan koin untuk membuka karakter baru.",
+            "Tekan tombol spasi untuk melompat lebih tinggi.",
+            "Temukan area tersembunyi untuk mendapatkan hadiah ekstra."
+        ];
+        
+        // Elemen DOM
+        const loadingBar = document.querySelector('.loading-bar');
+        const loadingPercentage = document.querySelector('.loading-percentage');
+        const tipText = document.getElementById('tip-text');
+        const continueBtn = document.getElementById('continue-btn');
+        
+        // Variabel untuk tracking progress
+        let progress = 0;
+        let tipIndex = 0;
+        
+        // Fungsi untuk mengubah tip
+        function changeTip() {
+            tipIndex = (tipIndex + 1) % tips.length;
+            tipText.style.opacity = 0;
+            
+            setTimeout(() => {
+                tipText.textContent = tips[tipIndex];
+                tipText.style.opacity = 1;
+            }, 500);
+        }
+        
+        // Interval untuk mengubah tip setiap 4 detik
+        setInterval(changeTip, 4000);
+        
+        // Simulasi loading progress
+        const loadingInterval = setInterval(() => {
+            progress += Math.floor(Math.random() * 5) + 1;
+            
+            if (progress > 100) progress = 100;
+            
+            loadingBar.style.width = `${progress}%`;
+            loadingPercentage.textContent = `${progress}%`;
+            
+            // Jika loading selesai
+            if (progress === 100) {
+                clearInterval(loadingInterval);
+                
+                // Tampilkan tombol continue setelah loading selesai
+                setTimeout(() => {
+                    continueBtn.style.display = 'block';
+                    continueBtn.classList.add('fadeIn');
+                }, 1000);
+            }
+        }, 200);
+        
+        // Event listener untuk tombol continue
+        continueBtn.addEventListener('click', () => {
+            window.location.href = 'game.html';
+        });
+    </script>
+</body>
+</html>
