@@ -1,0 +1,6 @@
+This folder will contain game assets like:
+- Images
+- Icons
+- Sound effects
+- Background music
+- Sprites

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retro Spaceship Game</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Welcome Screen with Door Animation -->
+        <div class="welcome-screen" id="welcomeScreen">
+            <div class="metal-panel">
+                <button class="welcome-btn" id="welcomeBtn">WELCOME</button>
+            </div>
+        </div>
+
+        <!-- Door Animation -->
+        <div class="door-container">
+            <div class="door left-door" id="leftDoor"></div>
+            <div class="door right-door" id="rightDoor"></div>
+        </div>
+
+        <!-- Main Cockpit Interface -->
+        <div class="cockpit" id="cockpit">
+            <div class="cockpit-frame">
+                <div class="control-panel">
+                    <div class="cockpit-center">
+                        <div class="led-display">
+                            <div class="title-container">
+                                <h1 class="game-title">SPACE VOYAGER</h1>
+                                <div class="blinking-cursor"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="button-panel">
+                            <a href="loading.html" class="metal-button" id="startBtn">Start Game</a>
+                            <button class="metal-button" id="instructionsBtn">Instructions</button>
+                            <button class="metal-button" id="creditsBtn">Credits</button>
+                        </div>
+                        
+                        <div class="control-lights">
+                            <div class="light red"></div>
+                            <div class="light yellow"></div>
+                            <div class="light green"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Elemen audio
+        var clickSound = new Audio();
+        clickSound.src = "data:audio/mp3;base64,SUQzAwAAAAAAJlRQRTEAAAAcAAAAU291bmRKYXkuY29tIFNvdW5kIEVmZmVjdHMA//uQxAAAAAAAAAAAAAAAAAAAAAAASW5mbwAAAA8AAAADAAAGhgBVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVWqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqr///////////////////////////////////////////8AAAA8TEFNRTMuMTAwBK8AAAAAAAAAABUgJAMGQQABmgAABoYiMJqPAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//uQxAADwAABpAAAACAAADSAAAAETEFNRTMuMTAwVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV";
+        
+        var doorSound = new Audio();
+        doorSound.src = "data:audio/mp3;base64,SUQzAwAAAAAAJlRQRTEAAAAcAAAAU291bmRKYXkuY29tIFNvdW5kIEVmZmVjdHMA//uQxAAAAAAAAAAAAAAAAAAAAAAASW5mbwAAAA8AAAADAAAGhgBVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVWqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqr///////////////////////////////////////////8AAAA8TEFNRTMuMTAwBK8AAAAAAAAAABUgJAMGQQABmgAABoYiMJqPAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//uQxAADwAABpAAAACAAADSAAAAETEFNRTMuMTAwVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV";
+
+        // Setup awal
+        document.getElementById('cockpit').style.display = 'none';
+
+        // Tombol Welcome
+        document.getElementById('welcomeBtn').addEventListener('click', function() {
+            clickSound.play();
+            document.getElementById('welcomeScreen').style.opacity = '0';
+            
+            // Suara pintu
+            doorSound.play();
+            
+            // Animasi pintu terbuka
+            setTimeout(function() {
+                document.getElementById('leftDoor').style.transform = 'translateX(-100%)';
+                document.getElementById('rightDoor').style.transform = 'translateX(100%)';
+            }, 500);
+            
+            // Tampilkan kokpit setelah animasi
+            setTimeout(function() {
+                document.getElementById('welcomeScreen').style.display = 'none';
+                document.getElementById('cockpit').style.display = 'block';
+                setTimeout(function() {
+                    document.getElementById('cockpit').style.opacity = '1';
+                }, 100);
+            }, 1500);
+        });
+
+        // Tombol Instructions
+        document.getElementById('instructionsBtn').addEventListener('click', function() {
+            clickSound.play();
+            alert("INSTRUKSI:\n\n1. Navigasikan pesawat melalui medan asteroid\n2. Kumpulkan power-up untuk meningkatkan pesawat\n3. Kalahkan pesawat musuh untuk maju ke level berikutnya\n4. Selesaikan semua misi untuk memenangkan game");
+        });
+
+        // Tombol Credits
+        document.getElementById('creditsBtn').addEventListener('click', function() {
+            clickSound.play();
+            alert("KREDIT:\n\nDesain Game: Yoo's Game Studio\nPengembangan: Tim Retro Futuristik\nEfek Suara: Digital Audio Lab\nTerima Kasih Khusus: Semua Beta Tester");
+        });
+
+        // Tombol Start Game sudah menggunakan tag <a> yang langsung mengarah ke loading.html
+        document.getElementById('startBtn').addEventListener('click', function() {
+            clickSound.play();
+        });
+    </script>
+</body>
+</html>
