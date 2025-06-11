@@ -11,6 +11,18 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <!-- Link ke Google Fonts untuk font game -->
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <script>
+        // Cek apakah pengguna datang langsung ke halaman loading tanpa melalui index
+        document.addEventListener('DOMContentLoaded', function() {
+            const referrer = document.referrer;
+            const isDirectAccess = !referrer.includes('index.html');
+            
+            // Jika akses langsung dan bukan dari halaman index, redirect ke index
+            if (isDirectAccess && !sessionStorage.getItem('fromIndex')) {
+                window.location.href = 'index.html';
+            }
+        });
+    </script>
 </head>
 <body>
     <div class="loading-container">
@@ -97,6 +109,8 @@
         
         // Event listener untuk tombol continue
         continueBtn.addEventListener('click', () => {
+            // Set flag bahwa loading sudah selesai
+            sessionStorage.setItem('loadingCompleted', 'true');
             window.location.href = 'game.html';
         });
     </script>

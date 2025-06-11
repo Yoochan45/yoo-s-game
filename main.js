@@ -5,6 +5,14 @@
 
 // Tunggu hingga dokumen selesai dimuat
 document.addEventListener('DOMContentLoaded', function() {
+    // Cek apakah ada redirect otomatis yang terjadi
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    const currentPage = window.location.pathname.split('/').pop();
+    
+    // Jika ini adalah halaman index dan ada parameter noredirect, hapus dari session storage
+    if (currentPage === 'index.html' || currentPage === '') {
+        sessionStorage.removeItem('redirected');
+    }
     // ===== NAVIGASI MOBILE =====
     const menuToggle = document.querySelector('.menu-toggle');
     const navLinks = document.querySelector('.nav-links');
