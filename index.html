@@ -107,7 +107,7 @@
                     <p>Yoo's Game: Maze Runner adalah game labirin 2D yang menguji kemampuan navigasi dan strategi pemain. Kumpulkan semua koin dan temukan pintu keluar untuk menyelesaikan setiap level.</p>
                     <div class="about-stats">
                         <div class="stat">
-                            <span class="stat-value">3</span>
+                            <span class="stat-value">10</span>
                             <span class="stat-label">Level</span>
                         </div>
                         <div class="stat">
@@ -158,19 +158,22 @@
                 <h2 class="section-title">Contact</h2>
                 <div class="game-card">
                     <p>Punya saran atau masukan untuk game Maze Runner? Hubungi kami melalui form di bawah ini:</p>
-                    <form class="contact-form">
+                    <form class="contact-form" action="https://formsubmit.co/yaya45chan@gmail.com" method="POST">
                         <div class="form-group">
                             <label for="name">Nama</label>
-                            <input type="text" id="name" placeholder="Masukkan nama Anda">
+                            <input type="text" id="name" name="name" placeholder="Masukkan nama Anda" required>
                         </div>
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="email" id="email" placeholder="Masukkan email Anda">
+                            <input type="email" id="email" name="email" placeholder="Masukkan email Anda" required>
                         </div>
                         <div class="form-group">
                             <label for="message">Pesan</label>
-                            <textarea id="message" placeholder="Tulis pesan Anda di sini"></textarea>
+                            <textarea id="message" name="message" placeholder="Tulis pesan Anda di sini" required></textarea>
                         </div>
+                        <input type="hidden" name="_subject" value="Pesan Baru dari Yoo's Game">
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="_next" value="https://yourdomain.com/thanks.html">
                         <button type="submit" class="game-btn">Kirim Pesan</button>
                     </form>
                 </div>
@@ -183,7 +186,7 @@
         <div class="footer-content">
             <div class="footer-logo">
                 <h3>Yoo's Game</h3>
-                <p>© 2023 All Rights Reserved</p>
+                <p>© 2025 All Rights Reserved</p>
             </div>
             <div class="social-links">
                 <a href="#"><i class="fab fa-facebook"></i></a>

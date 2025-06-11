@@ -334,6 +334,12 @@ header {
 }
 
 /* ===== HOME SECTION ===== */
+#start-game {
+    margin-top: 20px;
+    display: inline-block;
+    width: auto;
+}
+
 .game-features {
     display: flex;
     justify-content: space-between;
