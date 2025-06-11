@@ -3,105 +3,195 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Retro Spaceship Game</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <title>Yoo's Game</title>
+    <!-- Link ke file CSS -->
     <link rel="stylesheet" href="css/style.css">
+    <!-- Link ke Font Awesome untuk ikon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- Link ke normalize.css untuk konsistensi tampilan di berbagai browser -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <!-- Link ke Google Fonts untuk font game -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <!-- Script JavaScript -->
+    <script src="main.js" defer></script>
 </head>
 <body>
-    <div class="container">
-        <!-- Welcome Screen with Door Animation -->
-        <div class="welcome-screen" id="welcomeScreen">
-            <div class="metal-panel">
-                <button class="welcome-btn" id="welcomeBtn">WELCOME</button>
+    <!-- Header dengan judul game dan navigasi -->
+    <header>
+        <div class="logo-container">
+            <h1 class="game-title">Yoo's Game</h1>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
             </div>
         </div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#home"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="#about"><i class="fas fa-info-circle"></i> About</a></li>
+                <li><a href="#features"><i class="fas fa-cog"></i> Features</a></li>
+                <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
-        <!-- Door Animation -->
-        <div class="door-container">
-            <div class="door left-door" id="leftDoor"></div>
-            <div class="door right-door" id="rightDoor"></div>
-        </div>
+    <main>
+        <!-- Slider dengan gambar game -->
+        <section id="slider">
+            <div class="slide active" id="slide1">
+                <div class="slide-content">
+                    <h2>Adventure Awaits</h2>
+                    <p>Embark on an epic journey through mysterious worlds.</p>
+                    <button class="game-btn">Play Now</button>
+                </div>
+            </div>
+            <div class="slide" id="slide2">
+                <div class="slide-content">
+                    <h2>Epic Battles</h2>
+                    <p>Challenge powerful bosses and prove your skills.</p>
+                    <button class="game-btn">Join Battle</button>
+                </div>
+            </div>
+            <div class="slide" id="slide3">
+                <div class="slide-content">
+                    <h2>Collect & Upgrade</h2>
+                    <p>Find rare items and enhance your character.</p>
+                    <button class="game-btn">View Items</button>
+                </div>
+            </div>
+            <!-- Kontrol slider -->
+            <div class="slider-controls">
+                <button class="prev-slide"><i class="fas fa-chevron-left"></i></button>
+                <div class="slider-dots">
+                    <span class="dot active" data-slide="0"></span>
+                    <span class="dot" data-slide="1"></span>
+                    <span class="dot" data-slide="2"></span>
+                </div>
+                <button class="next-slide"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </section>
 
-        <!-- Main Cockpit Interface -->
-        <div class="cockpit" id="cockpit">
-            <div class="cockpit-frame">
-                <div class="control-panel">
-                    <div class="cockpit-center">
-                        <div class="led-display">
-                            <div class="title-container">
-                                <h1 class="game-title">SPACE VOYAGER</h1>
-                                <div class="blinking-cursor"></div>
-                            </div>
+        <!-- Bagian Home -->
+        <section id="home" class="game-section">
+            <div class="section-container">
+                <h2 class="section-title">Home</h2>
+                <div class="game-card">
+                    <p>Selamat datang di Yoo's Game! Temukan petualangan terbaru dan berita terkini.</p>
+                    <button id="start-game" class="game-btn pulse-effect">Start Game</button>
+                </div>
+                <!-- Fitur game highlight -->
+                <div class="game-features">
+                    <div class="feature-card">
+                        <i class="fas fa-gamepad"></i>
+                        <h3>Multiplayer</h3>
+                        <p>Bermain dengan teman</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-trophy"></i>
+                        <h3>Leaderboards</h3>
+                        <p>Kompetisi global</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-cogs"></i>
+                        <h3>Customization</h3>
+                        <p>Sesuaikan karakter</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bagian About -->
+        <section id="about" class="game-section">
+            <div class="section-container">
+                <h2 class="section-title">About</h2>
+                <div class="game-card">
+                    <p>Yoo's Game adalah petualangan epik yang menggabungkan aksi, strategi, dan eksplorasi dalam dunia fantasi yang menakjubkan.</p>
+                    <div class="about-stats">
+                        <div class="stat">
+                            <span class="stat-value">100+</span>
+                            <span class="stat-label">Level</span>
                         </div>
-                        
-                        <div class="button-panel">
-                            <a href="loading.html" class="metal-button" id="startBtn">Start Game</a>
-                            <button class="metal-button" id="instructionsBtn">Instructions</button>
-                            <button class="metal-button" id="creditsBtn">Credits</button>
+                        <div class="stat">
+                            <span class="stat-value">50+</span>
+                            <span class="stat-label">Karakter</span>
                         </div>
-                        
-                        <div class="control-lights">
-                            <div class="light red"></div>
-                            <div class="light yellow"></div>
-                            <div class="light green"></div>
+                        <div class="stat">
+                            <span class="stat-value">1M+</span>
+                            <span class="stat-label">Pemain</span>
                         </div>
                     </div>
                 </div>
             </div>
+        </section>
+
+        <!-- Bagian Features -->
+        <section id="features" class="game-section">
+            <div class="section-container">
+                <h2 class="section-title">Features</h2>
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <div class="feature-icon"><i class="fas fa-map"></i></div>
+                        <h3>Dunia Luas</h3>
+                        <p>Jelajahi dunia game yang luas dengan berbagai bioma dan rahasia tersembunyi.</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon"><i class="fas fa-users"></i></div>
+                        <h3>Mode Co-op</h3>
+                        <p>Bermain bersama teman dalam mode kooperatif untuk mengalahkan musuh.</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon"><i class="fas fa-sword"></i></div>
+                        <h3>Senjata Epik</h3>
+                        <p>Kumpulkan dan tingkatkan senjata legendaris dengan kemampuan unik.</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon"><i class="fas fa-dragon"></i></div>
+                        <h3>Boss Menantang</h3>
+                        <p>Hadapi boss epik dengan mekanik pertarungan yang kompleks.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bagian Contact -->
+        <section id="contact" class="game-section">
+            <div class="section-container">
+                <h2 class="section-title">Contact</h2>
+                <div class="game-card">
+                    <p>Punya pertanyaan atau masukan? Hubungi kami melalui form di bawah ini:</p>
+                    <form class="contact-form">
+                        <div class="form-group">
+                            <label for="name">Nama</label>
+                            <input type="text" id="name" placeholder="Masukkan nama Anda">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" placeholder="Masukkan email Anda">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Pesan</label>
+                            <textarea id="message" placeholder="Tulis pesan Anda di sini"></textarea>
+                        </div>
+                        <button type="submit" class="game-btn">Kirim Pesan</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <h3>Yoo's Game</h3>
+                <p>© 2025 All Rights Reserved</p>
+            </div>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-discord"></i></a>
+            </div>
         </div>
-    </div>
-
-    <script>
-        // Elemen audio
-        var clickSound = new Audio();
-        clickSound.src = "data:audio/mp3;base64,SUQzAwAAAAAAJlRQRTEAAAAcAAAAU291bmRKYXkuY29tIFNvdW5kIEVmZmVjdHMA//uQxAAAAAAAAAAAAAAAAAAAAAAASW5mbwAAAA8AAAADAAAGhgBVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVWqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqr///////////////////////////////////////////8AAAA8TEFNRTMuMTAwBK8AAAAAAAAAABUgJAMGQQABmgAABoYiMJqPAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//uQxAADwAABpAAAACAAADSAAAAETEFNRTMuMTAwVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV";
-        
-        var doorSound = new Audio();
-        doorSound.src = "data:audio/mp3;base64,SUQzAwAAAAAAJlRQRTEAAAAcAAAAU291bmRKYXkuY29tIFNvdW5kIEVmZmVjdHMA//uQxAAAAAAAAAAAAAAAAAAAAAAASW5mbwAAAA8AAAADAAAGhgBVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVWqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqr///////////////////////////////////////////8AAAA8TEFNRTMuMTAwBK8AAAAAAAAAABUgJAMGQQABmgAABoYiMJqPAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//uQxAADwAABpAAAACAAADSAAAAETEFNRTMuMTAwVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV";
-
-        // Setup awal
-        document.getElementById('cockpit').style.display = 'none';
-
-        // Tombol Welcome
-        document.getElementById('welcomeBtn').addEventListener('click', function() {
-            clickSound.play();
-            document.getElementById('welcomeScreen').style.opacity = '0';
-            
-            // Suara pintu
-            doorSound.play();
-            
-            // Animasi pintu terbuka
-            setTimeout(function() {
-                document.getElementById('leftDoor').style.transform = 'translateX(-100%)';
-                document.getElementById('rightDoor').style.transform = 'translateX(100%)';
-            }, 500);
-            
-            // Tampilkan kokpit setelah animasi
-            setTimeout(function() {
-                document.getElementById('welcomeScreen').style.display = 'none';
-                document.getElementById('cockpit').style.display = 'block';
-                setTimeout(function() {
-                    document.getElementById('cockpit').style.opacity = '1';
-                }, 100);
-            }, 1500);
-        });
-
-        // Tombol Instructions
-        document.getElementById('instructionsBtn').addEventListener('click', function() {
-            clickSound.play();
-            alert("INSTRUKSI:\n\n1. Navigasikan pesawat melalui medan asteroid\n2. Kumpulkan power-up untuk meningkatkan pesawat\n3. Kalahkan pesawat musuh untuk maju ke level berikutnya\n4. Selesaikan semua misi untuk memenangkan game");
-        });
-
-        // Tombol Credits
-        document.getElementById('creditsBtn').addEventListener('click', function() {
-            clickSound.play();
-            alert("KREDIT:\n\nDesain Game: Yoo's Game Studio\nPengembangan: Tim Retro Futuristik\nEfek Suara: Digital Audio Lab\nTerima Kasih Khusus: Semua Beta Tester");
-        });
-
-        // Tombol Start Game sudah menggunakan tag <a> yang langsung mengarah ke loading.html
-        document.getElementById('startBtn').addEventListener('click', function() {
-            clickSound.play();
-        });
-    </script>
+    </footer>
 </body>
 </html>
