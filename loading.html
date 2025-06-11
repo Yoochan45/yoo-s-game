@@ -15,7 +15,7 @@
 <body>
     <div class="loading-container">
         <div class="loading-card">
-            <h1 class="loading-title">Loading Game...</h1>
+            <h1 class="loading-title">Loading Maze Runner...</h1>
             
             <!-- Loading bar -->
             <div class="loading-bar-container">
@@ -28,24 +28,26 @@
             <!-- Loading tips -->
             <div class="loading-tip">
                 <i class="fas fa-lightbulb"></i>
-                <p id="tip-text">Tip: Gunakan item spesial untuk mengalahkan boss!</p>
+                <p id="tip-text">Tip: Kumpulkan semua koin sebelum menuju pintu keluar!</p>
             </div>
             
             <!-- Continue button (hidden initially) -->
-            <button id="continue-btn" class="game-btn pulse-effect" style="display: none;">
-                Mulai Game <i class="fas fa-arrow-right"></i>
-            </button>
+            <div class="continue-btn-container">
+                <button id="continue-btn" class="game-btn pulse-effect" style="display: none;">
+                    Mulai Game <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
         </div>
     </div>
 
     <script>
         // Array tips yang akan ditampilkan selama loading
         const tips = [
-            "Gunakan item spesial untuk mengalahkan boss!",
-            "Jangan lupa untuk meng-upgrade senjata Anda secara berkala.",
-            "Kumpulkan koin untuk membuka karakter baru.",
-            "Tekan tombol spasi untuk melompat lebih tinggi.",
-            "Temukan area tersembunyi untuk mendapatkan hadiah ekstra."
+            "Kumpulkan semua koin sebelum menuju pintu keluar!",
+            "Hindari bom atau permainan akan berakhir.",
+            "Gunakan tombol panah di keyboard atau kontrol layar untuk bergerak.",
+            "Setiap level memiliki tingkat kesulitan yang berbeda.",
+            "Pintu keluar hanya bisa dilewati setelah semua koin terkumpul."
         ];
         
         // Elemen DOM

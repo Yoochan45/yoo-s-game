@@ -12,22 +12,23 @@
     align-items: center;
     background-color: var(--dark-bg);
     background-image: 
-        linear-gradient(to bottom, rgba(16, 4, 31, 0.95), rgba(16, 4, 31, 0.8)),
+        linear-gradient(135deg, #0f0c29, #302b63, #24243e),
         url('https://www.transparenttextures.com/patterns/cartographer.png');
 }
 
 /* Kartu loading */
 .loading-card {
-    background-color: var(--card-bg);
+    background-color: rgba(30, 10, 60, 0.8);
     border-radius: 15px;
     padding: 2rem;
     width: 90%;
     max-width: 600px;
-    box-shadow: var(--card-shadow);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     border: 1px solid rgba(255, 255, 255, 0.1);
     text-align: center;
     position: relative;
     overflow: hidden;
+    backdrop-filter: blur(10px);
 }
 
 /* Efek glow pada kartu */
@@ -38,7 +39,7 @@
     left: -2px;
     right: -2px;
     bottom: -2px;
-    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color), var(--accent-color));
+    background: linear-gradient(45deg, #6a11cb, #2575fc, #ff5e62);
     z-index: -1;
     border-radius: 16px;
     animation: glowBorder 3s linear infinite;
@@ -55,7 +56,9 @@
     font-size: 1.8rem;
     margin-bottom: 2rem;
     color: var(--light-text);
-    text-shadow: 0 0 10px var(--glow-color);
+    text-shadow: 0 0 10px rgba(106, 17, 203, 0.8);
+    font-family: 'Press Start 2P', cursive, sans-serif;
+    letter-spacing: 1px;
 }
 
 /* Container loading bar */
@@ -73,7 +76,7 @@
 .loading-bar {
     height: 100%;
     width: 0%;
-    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    background: linear-gradient(90deg, #6a11cb, #2575fc);
     border-radius: 10px;
     transition: width 0.3s ease;
     position: relative;
@@ -103,24 +106,29 @@
     font-weight: bold;
     color: var(--accent-color);
     margin-bottom: 2rem;
+    font-family: 'Press Start 2P', cursive, sans-serif;
+    text-shadow: 0 0 10px rgba(255, 94, 98, 0.5);
 }
 
 /* Tip loading */
 .loading-tip {
     background-color: rgba(0, 0, 0, 0.2);
-    padding: 1rem;
+    padding: 1.2rem;
     border-radius: 10px;
     margin-bottom: 2rem;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
 .loading-tip i {
-    color: var(--accent-color);
+    color: #ffd700;
     font-size: 1.5rem;
     margin-right: 1rem;
+    animation: pulse 2s infinite;
 }
 
 .loading-tip p {
@@ -130,9 +138,35 @@
 }
 
 /* Tombol continue */
-#continue-btn {
+.continue-btn-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
     margin-top: 1rem;
+}
+
+#continue-btn {
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Press Start 2P', cursive, sans-serif;
+    letter-spacing: 1px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     animation: pulse 2s infinite;
+}
+
+#continue-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+#continue-btn i {
+    margin-left: 0.5rem;
 }
 
 /* Animasi fade in */
@@ -145,10 +179,16 @@
     to { opacity: 1; transform: translateY(0); }
 }
 
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
 /* Responsive design */
 @media (max-width: 768px) {
     .loading-title {
-        font-size: 1.5rem;
+        font-size: 1.3rem;
     }
     
     .loading-bar-container {
@@ -160,7 +200,7 @@
     }
     
     .loading-tip {
-        padding: 0.8rem;
+        padding: 1rem;
     }
     
     .loading-tip i {
@@ -170,6 +210,11 @@
     .loading-tip p {
         font-size: 0.8rem;
     }
+    
+    #continue-btn {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+    }
 }
 
 @media (max-width: 480px) {
@@ -178,7 +223,7 @@
     }
     
     .loading-title {
-        font-size: 1.2rem;
+        font-size: 1rem;
         margin-bottom: 1.5rem;
     }
     
