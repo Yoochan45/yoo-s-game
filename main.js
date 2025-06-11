@@ -106,7 +106,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (document.visibilityState === 'visible') {
                 nextSlide();
             }
-        }, 5000);
+        }, 8000);
     }
     
     // Mulai interval slide otomatis
@@ -122,40 +122,50 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // ===== ANIMASI SCROLL =====
-    // Animasi elemen saat di-scroll
+    // Animasi elemen saat di-scroll dengan throttling
+    let scrollTimeout;
     const animateOnScroll = function() {
-        const sections = document.querySelectorAll('.game-section');
-        
-        sections.forEach(section => {
-            const sectionTop = section.getBoundingClientRect().top;
-            const windowHeight = window.innerHeight;
-            
-            if (sectionTop < windowHeight * 0.75) {
-                section.classList.add('visible');
-            }
-        });
+        if (!scrollTimeout) {
+            scrollTimeout = setTimeout(function() {
+                scrollTimeout = null;
+                
+                const sections = document.querySelectorAll('.game-section');
+                
+                sections.forEach(section => {
+                    const sectionTop = section.getBoundingClientRect().top;
+                    const windowHeight = window.innerHeight;
+                    
+                    if (sectionTop < windowHeight * 0.75) {
+                        section.classList.add('visible');
+                    }
+                });
+            }, 100);
+        }
     };
     
-    // Jalankan animasi saat scroll
-    window.addEventListener('scroll', animateOnScroll);
+    // Jalankan animasi saat scroll dengan passive listener
+    window.addEventListener('scroll', animateOnScroll, { passive: true });
     
     // Jalankan sekali saat halaman dimuat
     animateOnScroll();
     
     // ===== EFEK HOVER PADA KARTU =====
-    const cards = document.querySelectorAll('.game-card, .feature-card, .feature-item');
-    
-    cards.forEach(card => {
-        card.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-10px)';
-            this.style.boxShadow = '0 15px 30px rgba(0, 0, 0, 0.6)';
-        });
+    // Hanya aktifkan efek hover pada desktop
+    if (window.matchMedia('(min-width: 768px)').matches) {
+        const cards = document.querySelectorAll('.game-card, .feature-card, .feature-item');
         
-        card.addEventListener('mouseleave', function() {
-            this.style.transform = '';
-            this.style.boxShadow = '';
+        cards.forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px)';
+                this.style.boxShadow = '0 15px 30px rgba(0, 0, 0, 0.6)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = '';
+                this.style.boxShadow = '';
+            });
         });
-    });
+    }
     
     // ===== FORM VALIDASI =====
     const contactForm = document.querySelector('.contact-form');

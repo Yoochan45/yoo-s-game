@@ -161,15 +161,15 @@ header {
 
 /* Gambar latar belakang untuk slide */
 #slide1 {
-    background-image: url('https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+    background-image: url('https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60');
 }
 
 #slide2 {
-    background-image: url('https://images.unsplash.com/photo-1511512578047-dfb367046420?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+    background-image: url('https://images.unsplash.com/photo-1511512578047-dfb367046420?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60');
 }
 
 #slide3 {
-    background-image: url('https://images.unsplash.com/photo-1511882150382-421056c89033?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+    background-image: url('https://images.unsplash.com/photo-1511882150382-421056c89033?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60');
 }
 
 .slide-content {
@@ -521,6 +521,7 @@ footer {
 
 .game-section {
     animation: fadeIn 1s ease-out;
+    will-change: transform, opacity;
 }
 
 /* ===== RESPONSIVE DESIGN ===== */
