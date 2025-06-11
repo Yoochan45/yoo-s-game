@@ -85,6 +85,8 @@ header {
     display: none;
     font-size: 1.5rem;
     cursor: pointer;
+    color: var(--light-text);
+    z-index: 101;
 }
 
 .nav-links {
@@ -296,6 +298,8 @@ header {
     font-size: 0.9rem;
     letter-spacing: 1px;
     box-shadow: 0 4px 15px rgba(106, 17, 203, 0.4);
+    position: relative;
+    z-index: 5;
 }
 
 .game-btn:hover {
@@ -540,11 +544,16 @@ footer {
         align-items: center;
         padding: 1rem 0;
         clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
-        transition: clip-path 0.4s ease-out;
+        transition: all 0.4s ease-out;
+        opacity: 0;
+        visibility: hidden;
+        z-index: 200;
     }
     
     .nav-links.active {
         clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+        opacity: 1;
+        visibility: visible;
     }
     
     .nav-links li {
@@ -568,6 +577,11 @@ footer {
     
     .slide-content p {
         font-size: 1rem;
+    }
+    
+    /* Perbaikan untuk tombol slider */
+    .slider-controls {
+        bottom: 60px;
     }
     
     /* Section responsif */
@@ -621,5 +635,10 @@ footer {
     .dot {
         width: 8px;
         height: 8px;
+    }
+    
+    /* Perbaikan untuk tombol slider di mobile */
+    .slider-controls {
+        bottom: 80px;
     }
 }
