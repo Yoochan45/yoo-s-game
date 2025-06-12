@@ -4,27 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Maze Adventure - Yoo's Game</title>
-    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="game.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
-    <script>
-        // Cek apakah pengguna datang langsung ke halaman game tanpa melalui loading
-        document.addEventListener('DOMContentLoaded', function() {
-            const referrer = document.referrer;
-            const isDirectAccess = !referrer.includes('loading.html') && !referrer.includes('index.html');
-            
-            // Jika akses langsung dan bukan dari halaman loading, redirect ke index
-            if (isDirectAccess && !sessionStorage.getItem('gameStarted')) {
-                window.location.href = 'index.html';
-            }
-            
-            // Set flag bahwa game sudah dimulai
-            sessionStorage.setItem('gameStarted', 'true');
-        });
-    </script>
 </head>
 <body>
     <div id="root"></div>
