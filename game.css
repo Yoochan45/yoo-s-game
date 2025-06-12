@@ -25,15 +25,16 @@ body {
 }
 
 .game-container {
-    width: 320px;
-    max-width: 95%;
+    max-width: 100%;
+    width: 500px;
     background-color: rgba(30, 10, 60, 0.8);
     border-radius: 15px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    padding: 0.8rem;
+    padding: 1.5rem;
     display: flex;
     flex-direction: column;
-    gap: 0.8rem;
+    align-items: center;
+    gap: 1.5rem;
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.1);
     margin: 0 auto;
@@ -41,20 +42,14 @@ body {
 
 .game-header {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    padding: 0.8rem;
+    padding: 1rem;
     background: linear-gradient(135deg, #6a11cb, #2575fc);
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
     position: relative;
     overflow: hidden;
-    flex-direction: column;
-    gap: 0.5rem;
-    text-align: center;
-    width: 100%;
-    box-sizing: border-box;
-    margin: 0 auto;
 }
 
 .game-header::before {
@@ -121,24 +116,22 @@ body {
 .maze-grid {
     display: grid;
     grid-template-columns: repeat(10, 1fr);
-    gap: 2px;
+    gap: 3px;
     background-color: #0a0a1a;
-    padding: 4px;
+    padding: 8px;
     border-radius: 10px;
     box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.7);
     border: 1px solid rgba(255, 255, 255, 0.05);
-    width: 280px;
-    max-width: 100%;
     margin: 0 auto;
 }
 
 .cell {
-    width: 26px;
-    height: 26px;
+    width: 100%;
+    aspect-ratio: 1;
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 4px;
+    border-radius: 5px;
     transition: all 0.2s ease;
     position: relative;
 }
@@ -420,15 +413,19 @@ body {
 /* Responsive */
 @media (max-width: 500px) {
     .game-container {
-        width: 300px;
+        width: auto;
+        max-width: 300px;
         padding: 0.5rem;
     }
     
     .game-header {
-        width: 210px;
+        width: 75%;
         padding: 0.4rem;
         margin: 0 auto 0.5rem;
         border-radius: 8px;
+        flex-direction: column;
+        justify-content: center;
+        gap: 0.4rem;
     }
     
     .game-title {
@@ -470,7 +467,7 @@ body {
     }
     
     .maze-grid {
-        width: 280px;
+        width: 100%;
         padding: 3px;
         gap: 1px;
     }
