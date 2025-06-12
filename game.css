@@ -442,3 +442,39 @@ body {
         padding: 0.8rem;
     }
 }
+
+/* Desktop Specific Styles */
+@media (min-width: 768px) {
+    .game-container {
+        max-width: 600px;
+        padding: 2rem;
+    }
+    
+    .game-header {
+        padding: 1.5rem;
+    }
+    
+    .game-title {
+        font-size: 2.5rem;
+    }
+    
+    .maze-grid {
+        gap: 4px;
+        padding: 10px;
+    }
+    
+    .controls {
+        width: 180px;
+        margin-top: 20px;
+    }
+    
+    .control-btn {
+        padding: 1.2rem;
+        font-size: 1.8rem;
+    }
+    
+    .stat {
+        padding: 0.8rem 1.2rem;
+        font-size: 1.1rem;
+    }
+}

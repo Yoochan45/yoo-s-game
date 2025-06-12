@@ -261,119 +261,133 @@ const Game = () => {
         setGameStatus('playing');
     };
     
-    // Render konten sel
-    const renderCell = (cell) => {
-        switch (cell) {
-            case 0: // Jalan
-                return <div className="cell path"></div>;
-            case 1: // Dinding
-                return <div className="cell wall"></div>;
-            case 2: // Pemain
+    // Render sel maze
+    const renderCell = (cellValue, x, y) => {
+        switch (cellValue) {
+            case 0: // Path
+                return <div key={`${x}-${y}`} className="cell path"></div>;
+            case 1: // Wall
+                return <div key={`${x}-${y}`} className="cell wall"></div>;
+            case 2: // Player
                 return (
-                    <div className="cell path player">
+                    <div key={`${x}-${y}`} className="cell path player">
                         <div className="player-character">
                             <div className="mouth"></div>
                         </div>
                     </div>
                 );
-            case 3: // Koin
+            case 3: // Coin
                 return (
-                    <div className="cell path">
+                    <div key={`${x}-${y}`} className="cell path">
                         <div className="coin-item"></div>
                     </div>
                 );
-            case 4: // Bom
+            case 4: // Bomb
                 return (
-                    <div className="cell path">
+                    <div key={`${x}-${y}`} className="cell path">
                         <div className="bomb-item"></div>
                     </div>
                 );
-            case 5: // Pintu keluar
+            case 5: // Exit
                 return (
-                    <div className="cell path">
+                    <div key={`${x}-${y}`} className="cell path">
                         <div className="exit-item"></div>
                     </div>
                 );
             default:
-                return <div className="cell"></div>;
+                return <div key={`${x}-${y}`} className="cell"></div>;
         }
+    };
+    
+    // Render tombol kontrol untuk perangkat mobile
+    const renderControls = () => {
+        return (
+            <div className="controls">
+                <button className="control-btn up-btn" onClick={() => movePlayer(0, -1)}>
+                    <i className="fas fa-chevron-up"></i>
+                </button>
+                <button className="control-btn left-btn" onClick={() => movePlayer(-1, 0)}>
+                    <i className="fas fa-chevron-left"></i>
+                </button>
+                <button className="control-btn right-btn" onClick={() => movePlayer(1, 0)}>
+                    <i className="fas fa-chevron-right"></i>
+                </button>
+                <button className="control-btn down-btn" onClick={() => movePlayer(0, 1)}>
+                    <i className="fas fa-chevron-down"></i>
+                </button>
+            </div>
+        );
+    };
+    
+    // Render modal berdasarkan status game
+    const renderModal = () => {
+        if (gameStatus === 'playing') return null;
+        
+        let title, message, buttonText, buttonAction;
+        
+        switch (gameStatus) {
+            case 'levelComplete':
+                title = `Level ${currentLevel + 1} Selesai!`;
+                message = `Kamu berhasil menyelesaikan level ${currentLevel + 1}. Siap untuk level berikutnya?`;
+                buttonText = 'Level Berikutnya';
+                buttonAction = loadNextLevel;
+                break;
+            case 'completed':
+                title = 'Selamat!';
+                message = `Kamu telah menyelesaikan semua level dengan skor ${score}! Kamu adalah master labirin!`;
+                buttonText = 'Main Lagi';
+                buttonAction = resetGame;
+                break;
+            case 'lost':
+                title = 'Game Over!';
+                message = 'Kamu terkena bom! Coba lagi dan hati-hati dengan bom.';
+                buttonText = 'Coba Lagi';
+                buttonAction = resetLevel;
+                break;
+            default:
+                return null;
+        }
+        
+        return (
+            <div className="modal">
+                <div className="modal-content">
+                    <h2 className="modal-title">{title}</h2>
+                    <p>{message}</p>
+                    <button className="modal-btn" onClick={buttonAction}>{buttonText}</button>
+                </div>
+            </div>
+        );
     };
     
     // Render komponen utama
     return (
         <div className="game-container">
-            {/* Header game */}
             <div className="game-header">
                 <div className="level-indicator">Level {currentLevel + 1}</div>
-                <h1 className="game-title">MAZE RUNNER</h1>
+                <h1 className="game-title">Maze Adventure</h1>
                 <div className="game-stats">
                     <div className="stat">
-                        <span>Score:</span>
-                        <span className="stat-value">{score}</span>
+                        <i className="fas fa-coins"></i>
+                        <span className="stat-value">{collectedCoins}/{totalCoins}</span>
                     </div>
                     <div className="stat">
-                        <span>Coins:</span>
-                        <span className="stat-value">{collectedCoins}/{totalCoins}</span>
+                        <i className="fas fa-star"></i>
+                        <span className="stat-value">{score}</span>
                     </div>
                 </div>
             </div>
             
-            {/* Grid maze */}
             <div className="maze-grid">
                 {maze.map((row, y) => 
-                    row.map((cell, x) => (
-                        <React.Fragment key={`${x}-${y}`}>
-                            {renderCell(cell)}
-                        </React.Fragment>
-                    ))
+                    row.map((cell, x) => renderCell(cell, x, y))
                 )}
             </div>
             
-            {/* Kontrol untuk mobile */}
-            <div className="controls">
-                <button className="control-btn up-btn" onClick={() => movePlayer(0, -1)}>⬆️</button>
-                <button className="control-btn left-btn" onClick={() => movePlayer(-1, 0)}>⬅️</button>
-                <button className="control-btn right-btn" onClick={() => movePlayer(1, 0)}>➡️</button>
-                <button className="control-btn down-btn" onClick={() => movePlayer(0, 1)}>⬇️</button>
-            </div>
-            
-            {/* Modal level complete */}
-            {gameStatus === 'levelComplete' && (
-                <div className="modal">
-                    <div className="modal-content">
-                        <h2 className="modal-title">Level Complete! 🎉</h2>
-                        <p>Kamu berhasil mengumpulkan semua koin dan menemukan pintu keluar!</p>
-                        <p>Skor: {score}</p>
-                        <button className="modal-btn" onClick={loadNextLevel}>Level Berikutnya</button>
-                    </div>
-                </div>
-            )}
-            
-            {/* Modal game complete */}
-            {gameStatus === 'completed' && (
-                <div className="modal">
-                    <div className="modal-content">
-                        <h2 className="modal-title">Game Complete! 🏆</h2>
-                        <p>Selamat! Kamu telah menyelesaikan semua level!</p>
-                        <p>Skor Akhir: {score}</p>
-                        <button className="modal-btn" onClick={resetGame}>Main Lagi</button>
-                    </div>
-                </div>
-            )}
-            
-            {/* Modal game over */}
-            {gameStatus === 'lost' && (
-                <div className="modal">
-                    <div className="modal-content">
-                        <h2 className="modal-title">Game Over! 💥</h2>
-                        <p>Kamu menabrak bom!</p>
-                        <button className="modal-btn" onClick={resetLevel}>Coba Lagi</button>
-                    </div>
-                </div>
-            )}
+            {renderControls()}
+            {renderModal()}
         </div>
     );
 };
 
-// Render aplikasi
+// Render aplikasi ke DOM
 ReactDOM.render(<Game />, document.getElementById('root'));
