@@ -30,11 +30,11 @@ body {
     background-color: rgba(30, 10, 60, 0.8);
     border-radius: 15px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    padding: 1.5rem;
+    padding: 1rem 1.5rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1.5rem;
+    gap: 1rem;
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.1);
     margin: 0 auto;
@@ -44,7 +44,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem;
+    padding: 0.6rem 1rem;
     background: linear-gradient(135deg, #6a11cb, #2575fc);
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
@@ -76,7 +76,7 @@ body {
 }
 
 .game-title {
-    font-size: 2rem;
+    font-size: 1.8rem;
     color: white;
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.5), 0 0 20px rgba(255, 255, 255, 0.3);
     margin: 0;
@@ -96,12 +96,12 @@ body {
 
 .stat {
     background: rgba(0, 0, 0, 0.3);
-    padding: 0.7rem 1rem;
+    padding: 0.5rem 0.8rem;
     border-radius: 50px;
-    font-size: 1rem;
+    font-size: 0.9rem;
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.4rem;
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
@@ -116,9 +116,9 @@ body {
 .maze-grid {
     display: grid;
     grid-template-columns: repeat(10, 1fr);
-    gap: 3px;
+    gap: 1px;
     background-color: #0a0a1a;
-    padding: 8px;
+    padding: 5px;
     border-radius: 10px;
     box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.7);
     border: 1px solid rgba(255, 255, 255, 0.05);
@@ -397,14 +397,14 @@ body {
 /* Level indicator */
 .level-indicator {
     position: absolute;
-    top: -10px;
+    top: -8px;
     left: 50%;
     transform: translateX(-50%);
     background: linear-gradient(135deg, #e74c3c, #c0392b);
     color: white;
-    padding: 0.3rem 1rem;
+    padding: 0.2rem 0.8rem;
     border-radius: 50px;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     font-weight: bold;
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
     z-index: 2;
@@ -413,42 +413,45 @@ body {
 /* Responsive */
 @media (max-width: 500px) {
     .game-container {
-        width: auto;
-        max-width: 300px;
+        width: 300px;
         padding: 0.5rem;
     }
     
     .game-header {
-        width: 75%;
-        padding: 0.4rem;
-        margin: 0 auto 0.5rem;
+        width: 100%;
+        padding: 0.2rem 0.5rem;
+        margin-bottom: 0.2rem;
         border-radius: 8px;
-        flex-direction: column;
-        justify-content: center;
-        gap: 0.4rem;
+        flex-direction: row;
+        justify-content: space-between;
+        height: auto;
+        min-height: 0;
     }
     
     .game-title {
-        font-size: 1rem;
+        font-size: 0.8rem;
         margin: 0;
     }
     
     .level-indicator {
-        position: static;
-        margin: 3px 0;
-        transform: none;
-        font-size: 0.7rem;
-        padding: 0.2rem 0.6rem;
+        position: absolute;
+        top: -8px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 0.6rem;
+        padding: 0.1rem 0.4rem;
+        margin: 0;
+        line-height: 1;
     }
     
     .game-stats {
-        justify-content: center;
-        gap: 0.4rem;
+        gap: 0.2rem;
     }
     
     .stat {
-        padding: 0.2rem 0.5rem;
-        font-size: 0.7rem;
+        padding: 0.1rem 0.3rem;
+        font-size: 0.6rem;
+        line-height: 1;
     }
     
     .cell {
@@ -458,17 +461,18 @@ body {
     
     .controls {
         width: 120px;
-        margin: 0.5rem auto;
+        margin: 0.2rem auto;
     }
     
     .control-btn {
-        padding: 0.5rem;
-        font-size: 1.2rem;
+        padding: 0.4rem;
+        font-size: 1rem;
     }
     
     .maze-grid {
-        width: 100%;
+        width: 280px;
         padding: 3px;
-        gap: 1px;
+        gap: 0px;
+        margin-top: 0;
     }
 }
